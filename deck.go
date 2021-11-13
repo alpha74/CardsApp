@@ -29,3 +29,8 @@ func (D Deck) printDeck() {
 		fmt.Println(i, card)
 	}
 }
+
+// Returns a hand. Returns two deck
+func deal(D Deck, handSize int) (Deck, Deck) {
+	return D[:handSize], D[handSize:]
+}
