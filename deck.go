@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // Create a new type which is slice of strings
 // 'Deck' extends functionality of []string, analogous to typedef in c++
@@ -31,6 +34,13 @@ func (D Deck) printDeck() {
 }
 
 // Returns a hand. Returns two deck
+// Not a receiver
 func deal(D Deck, handSize int) (Deck, Deck) {
 	return D[:handSize], D[handSize:]
+}
+
+// Convert a Deck to string. A receiver
+func (D Deck) toString() string {
+	// Type conversion: Deck to string
+	return strings.Join([]string(D), ",")
 }
