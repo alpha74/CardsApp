@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	cards := newDeck()
 
-	hand, remainDeck := deal(cards, 3)
+	hand, remainDeck := deal(cards, 5)
 
 	remainDeck.printDeck()
 
@@ -17,5 +17,8 @@ func main() {
 	// Read hand from file
 	handFromFile := newDeckFromFile(filename)
 	fmt.Println("\n Hand read from file: ")
+
+	// Shuffle the deck
+	handFromFile.shuffle()
 	handFromFile.printDeck()
 }
