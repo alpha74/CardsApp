@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
 )
 
@@ -50,4 +51,25 @@ func (D Deck) toString() string {
 func (D Deck) saveToFile(filename string) error {
 	// 0666 : Anyone can read/write
 	return ioutil.WriteFile(filename, []byte(D.toString()), 0666)
+}
+
+// Func to read Deck from file
+// Takes file in which Deck is saved
+func newDeckFromFile(filename string) Deck {
+	// Here, err is value of type error.
+	// If nothing went wrongL it will be nil
+	byteSlice, err := ioutil.ReadFile(filename)
+
+	if err != nil {
+		fmt.Println("Error in file reading: ", err)
+		os.Exit(1)
+	}
+
+	// Convert byte slice to string
+	// Split strings on ','
+	deckStr := strings.Split(string(byteSlice), ",")
+
+	// We are only able to directly convert to Deck
+	// because Deck is really a slice of string
+	return Deck(deckStr)
 }
